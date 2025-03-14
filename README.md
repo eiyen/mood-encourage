@@ -13,6 +13,8 @@
 - React
 - TypeScript
 - CSS
+- Vercel Serverless Functions
+- DeepSeek API
 
 ## 本地开发
 
@@ -54,13 +56,26 @@ npm run build
 
 生成的文件将位于 `build` 目录中，可以部署到任何静态网站托管服务。
 
-## 集成 DeepSeek API
+## DeepSeek API 集成
 
-目前，应用使用模拟数据提供反馈。要集成 DeepSeek API，需要：
+本应用使用 DeepSeek API 生成鼓励性反馈。集成步骤如下：
 
-1. 创建一个后端服务或使用无服务器函数（如 Netlify Functions 或 Vercel Serverless Functions）
-2. 在后端服务中处理 DeepSeek API 调用
-3. 取消注释 `App.tsx` 中的 `getDeepSeekFeedback` 函数并更新 API 端点
+1. 在 Vercel 上设置环境变量
+
+   - 登录 Vercel 账户
+   - 进入项目设置
+   - 点击 "Environment Variables"
+   - 添加名为 `DEEPSEEK_API_KEY` 的环境变量，值为您的 DeepSeek API 密钥
+
+2. 部署应用
+
+   - 应用会自动使用 Vercel Serverless Functions 处理 API 调用
+   - 在生产环境中使用 DeepSeek API，在开发环境中使用模拟数据
+
+3. API 调用流程
+   - 前端发送心情分数到 `/api/deepseek` 端点
+   - Serverless Function 调用 DeepSeek API 并返回结果
+   - 前端显示 AI 生成的鼓励反馈
 
 ## 许可证
 

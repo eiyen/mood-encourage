@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// 注释掉未使用的axios导入，或者在需要时取消注释
-// import axios from "axios";
+import axios from "axios";
 import "./App.css";
 
 function App() {
@@ -47,32 +46,35 @@ function App() {
     return feedbacks[feedbackType][randomIndex];
   };
 
-  // 实际的DeepSeek API调用函数（目前是注释状态）
-  /*
+  // 实际的DeepSeek API调用函数
   const getDeepSeekFeedback = async (moodScore: number) => {
     try {
-      // 这里将来会替换为实际的API端点
-      const response = await axios.post('/api/deepseek', {
-        mood: moodScore
+      // 调用我们的Serverless Function
+      const response = await axios.post("/api/deepseek", {
+        mood: moodScore,
       });
       return response.data.feedback;
     } catch (error) {
-      console.error('DeepSeek API调用失败:', error);
+      console.error("DeepSeek API调用失败:", error);
       throw error;
     }
   };
-  */
 
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      // 使用模拟API调用
-      const response = await getMoodFeedback(mood);
-      setFeedback(response);
+      // 根据环境选择使用模拟数据还是真实API
+      let response;
 
-      // 实际项目中会使用真实API调用
-      // const response = await getDeepSeekFeedback(mood);
-      // setFeedback(response);
+      // 如果是生产环境，使用DeepSeek API
+      if (process.env.NODE_ENV === "production") {
+        response = await getDeepSeekFeedback(mood);
+      } else {
+        // 开发环境使用模拟数据
+        response = await getMoodFeedback(mood);
+      }
+
+      setFeedback(response);
     } catch (error) {
       console.error("获取反馈失败:", error);
       setFeedback("获取反馈时出错，请稍后再试。");
