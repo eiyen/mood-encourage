@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# 心情鼓励器
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+一个简单的网页应用，帮助用户表达当前心情并获得鼓励性反馈。
 
-## Available Scripts
+## 功能
 
-In the project directory, you can run:
+- 通过滑块选择当前心情评分（1-10 分）
+- 点击按钮获取基于心情评分的鼓励性反馈
+- 简洁美观的用户界面
 
-### `npm start`
+## 技术栈
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- TypeScript
+- CSS
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 本地开发
 
-### `npm test`
+### 前提条件
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14.0.0 或更高版本)
+- npm (v6.0.0 或更高版本)
 
-### `npm run build`
+### 安装步骤
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 克隆仓库
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+git clone <仓库地址>
+cd mood-encourage
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. 安装依赖
 
-### `npm run eject`
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. 启动开发服务器
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. 在浏览器中访问 [http://localhost:3000](http://localhost:3000)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 部署
 
-## Learn More
+### 构建生产版本
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+生成的文件将位于 `build` 目录中，可以部署到任何静态网站托管服务。
+
+## 集成 DeepSeek API
+
+目前，应用使用模拟数据提供反馈。要集成 DeepSeek API，需要：
+
+1. 创建一个后端服务或使用无服务器函数（如 Netlify Functions 或 Vercel Serverless Functions）
+2. 在后端服务中处理 DeepSeek API 调用
+3. 取消注释 `App.tsx` 中的 `getDeepSeekFeedback` 函数并更新 API 端点
+
+## 许可证
+
+MIT
